@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2><a href="{% url 'book:book_list' %}">Book</a></h2>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date Published</th>
+        <th>Number_of Page</th>
+        <th>Type of Book</th>
+        <th>Action</th>
+    </tr>
+{% for book in object_list %}
+    <tr>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.date_published}}</td>
+        <td>{{book.number_of_page}}</td>
+        <td>{{book.type_of_book}}</td>
+        <td>
+          <a href="{% url 'book:book_edit' book.id %}">edit</a>
+          <a href="{% url 'book:book_delete' book.id %}">delete</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+<a href="{% url 'book:book_new' %}">New</a>
+
+{% endblock %}
